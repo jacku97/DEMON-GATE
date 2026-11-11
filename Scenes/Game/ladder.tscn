@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dsc2yijh2kr7t"]
+
+[ext_resource type="Script" uid="uid://bjhbe7q6bow72" path="res://Scripts/Gameplay/ladder.gd" id="1_gpq5f"]
+[ext_resource type="Texture2D" uid="uid://dxs8tna6kxer5" path="res://Assets/TileSets/urizen_onebit_tileset_first_third.png" id="1_ny17s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qfhb"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jovs4"]
+size = Vector2(12, 0)
+
+[node name="Ladder" type="StaticBody2D" unique_id=347400240]
+texture_filter = 1
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_gpq5f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1561251770]
+texture = ExtResource("1_ny17s")
+region_enabled = true
+region_rect = Rect2(0, 53, 12, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=737452120]
+shape = SubResource("RectangleShape2D_3qfhb")
+
+[node name="LadderTop" type="StaticBody2D" parent="." unique_id=392415287]
+position = Vector2(0, 0.135)
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderTop" unique_id=1229848021]
+position = Vector2(0, -6.135)
+shape = SubResource("RectangleShape2D_jovs4")
+one_way_collision = true
+debug_color = Color(0.82439053, 0.3994427, 5.7756904e-07, 0.41960785)
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=27198223]
+position = Vector2(0, -7)
+target_position = Vector2(0, -14)
+collision_mask = 64
+hit_from_inside = true

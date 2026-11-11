@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dqnhohb0kbajx"]
+
+[ext_resource type="Texture2D" uid="uid://dxs8tna6kxer5" path="res://Assets/TileSets/urizen_onebit_tileset_first_third.png" id="1_l68lo"]
+[ext_resource type="Script" uid="uid://dpbsimd7lq557" path="res://Scripts/Player/statemachine.gd" id="3_6sf0t"]
+[ext_resource type="Script" uid="uid://bdfid08y6kolq" path="res://Scripts/Gameplay/health.gd" id="4_viy0e"]
+[ext_resource type="Script" uid="uid://dvn0cnrd2ypom" path="res://Scripts/Player/motor.gd" id="5_wcv8k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qfhb"]
+radius = 6.0
+height = 12.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1049012398]
+texture_filter = 1
+collision_mask = 129
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1284513913]
+texture = ExtResource("1_l68lo")
+region_enabled = true
+region_rect = Rect2(91, 183, 12.151, 12.221)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=921587656]
+shape = SubResource("CapsuleShape2D_3qfhb")
+
+[node name="Statemachine" type="Node" parent="." unique_id=901988124]
+unique_name_in_owner = true
+script = ExtResource("3_6sf0t")
+metadata/_custom_type_script = "uid://dpbsimd7lq557"
+
+[node name="Health" type="Node" parent="." unique_id=749209207]
+unique_name_in_owner = true
+script = ExtResource("4_viy0e")
+metadata/_custom_type_script = "uid://bdfid08y6kolq"
+
+[node name="Motor" type="Node" parent="." unique_id=1393432424]
+unique_name_in_owner = true
+script = ExtResource("5_wcv8k")
+metadata/_custom_type_script = "uid://dvn0cnrd2ypom"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=243564081]
+unique_name_in_owner = true

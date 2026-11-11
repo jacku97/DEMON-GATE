@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bjoyfqg5dh0s0"]
+
+[ext_resource type="PackedScene" uid="uid://dqnhohb0kbajx" path="res://Scenes/Game/Enemies/EnemyTemplate.tscn" id="1_tvlgt"]
+[ext_resource type="Script" uid="uid://dtu0okdy81h5u" path="res://Scripts/EnemyEntity.gd" id="2_dnl7c"]
+[ext_resource type="Script" uid="uid://bxgk5dhub8pc0" path="res://Scripts/Enemies/Walker/walk_enemy_state.gd" id="2_focj7"]
+[ext_resource type="Script" uid="uid://bbyb7ivjexad6" path="res://Scripts/Player/stunned_state.gd" id="3_xnmlc"]
+[ext_resource type="Script" uid="uid://qv7jl11lhadp" path="res://Scripts/Enemies/ground_checker.gd" id="3_yurnu"]
+[ext_resource type="Script" uid="uid://hkju5h1u57jh" path="res://Scripts/Gameplay/contact_damager.gd" id="4_6tvtf"]
+[ext_resource type="Script" uid="uid://c7hb36tg1nxlj" path="res://Scripts/Player/stunned_fall_state.gd" id="4_xolpk"]
+[ext_resource type="Script" uid="uid://djmrl4alij8ny" path="res://Scripts/Enemies/Walker/idle_enemy_state.gd" id="5_xolpk"]
+[ext_resource type="Script" uid="uid://d31r5c08eokrq" path="res://Scripts/Enemies/Walker/climb_enemy_state.gd" id="6_quju1"]
+[ext_resource type="PackedScene" uid="uid://bulvmriync0mi" path="res://Scenes/Game/Components/ladder_detector.tscn" id="8_dnl7c"]
+[ext_resource type="Script" uid="uid://dhh67txc7j1ui" path="res://Scripts/Player/fall_state.gd" id="8_i7d2g"]
+[ext_resource type="Script" uid="uid://bynatmuam1kiu" path="res://Scripts/Enemies/launch_enemy_state.gd" id="9_i7d2g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yurnu"]
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qfhb"]
+radius = 12.0
+height = 24.0
+
+[node name="WalkerEnemy" unique_id=1049012398 instance=ExtResource("1_tvlgt")]
+collision_layer = 4
+script = ExtResource("2_dnl7c")
+manual_setup = true
+
+[node name="Sprite2D" parent="." index="0" unique_id=1284513913]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=921587656]
+shape = SubResource("CapsuleShape2D_yurnu")
+
+[node name="Statemachine" parent="." index="2" unique_id=901988124 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Launch")
+
+[node name="Walk" type="Node" parent="Statemachine" index="0" unique_id=1932229482]
+script = ExtResource("2_focj7")
+climb_chance = 60.0
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Stunned" type="Node" parent="Statemachine" index="1" unique_id=785618441]
+script = ExtResource("3_xnmlc")
+stun_time = 0.5
+metadata/_custom_type_script = "uid://bbyb7ivjexad6"
+
+[node name="StunnedFall" type="Node" parent="Statemachine" index="2" unique_id=1180217860]
+script = ExtResource("4_xolpk")
+trigger_falling = false
+metadata/_custom_type_script = "uid://c7hb36tg1nxlj"
+
+[node name="Idle" type="Node" parent="Statemachine" index="3" unique_id=1983910250]
+script = ExtResource("5_xolpk")
+transition_state = "walk"
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Climb" type="Node" parent="Statemachine" index="4" unique_id=1572308321]
+script = ExtResource("6_quju1")
+trigger_falling = false
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Fall" type="Node" parent="Statemachine" index="5" unique_id=1050916649]
+script = ExtResource("8_i7d2g")
+metadata/_custom_type_script = "uid://dhh67txc7j1ui"
+
+[node name="Launch" type="Node" parent="Statemachine" index="6" unique_id=351509146]
+script = ExtResource("9_i7d2g")
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Health" parent="." index="3" unique_id=749209207]
+starting_health = 1
+
+[node name="Motor" parent="." index="4" unique_id=1393432424]
+GROUND_SPEED = 175.0
+
+[node name="GroundChecker" type="Node2D" parent="." index="5" unique_id=443375769]
+unique_name_in_owner = true
+script = ExtResource("3_yurnu")
+
+[node name="RayCast2D" type="RayCast2D" parent="GroundChecker" index="0" unique_id=233448481]
+target_position = Vector2(0, 39)
+collision_mask = 129
+hit_from_inside = true
+
+[node name="ContactDamager" type="Area2D" parent="." index="6" unique_id=1307631130]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_6tvtf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamager" index="0" unique_id=1291634301]
+shape = SubResource("CapsuleShape2D_3qfhb")
+
+[node name="LadderDetector" parent="." index="7" unique_id=1976779821 instance=ExtResource("8_dnl7c")]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="ContactDamager" to="ContactDamager" method="_on_body_entered"]

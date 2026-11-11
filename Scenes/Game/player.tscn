@@ -1,0 +1,350 @@
+[gd_scene format=3 uid="uid://du5n3gwr8ppl4"]
+
+[ext_resource type="Script" uid="uid://bfdcxj2af5mrl" path="res://Scripts/entity.gd" id="1_lq2ly"]
+[ext_resource type="Texture2D" uid="uid://nawc54i2fpw6" path="res://Assets/Sprites/Player/Mage2.png" id="2_onsw4"]
+[ext_resource type="Script" uid="uid://dpbsimd7lq557" path="res://Scripts/Player/statemachine.gd" id="3_8jfvq"]
+[ext_resource type="Script" uid="uid://m46lvwo1w57a" path="res://Scripts/Player/state.gd" id="4_n3abv"]
+[ext_resource type="Script" uid="uid://dvn0cnrd2ypom" path="res://Scripts/Player/motor.gd" id="5_n3abv"]
+[ext_resource type="Script" uid="uid://dqnkib362yp3u" path="res://Scripts/Player/idle_state.gd" id="5_vi63e"]
+[ext_resource type="Script" uid="uid://dhh67txc7j1ui" path="res://Scripts/Player/fall_state.gd" id="6_ajor6"]
+[ext_resource type="Script" uid="uid://cvfr8mf8x3sbu" path="res://Scripts/Player/move_state.gd" id="7_ssbfe"]
+[ext_resource type="Script" uid="uid://c7spq0rhh2t4g" path="res://Scripts/Player/jump_state.gd" id="8_pet2p"]
+[ext_resource type="Script" uid="uid://blxkryvmdf3px" path="res://Scripts/Player/shoot_state.gd" id="9_rg4bb"]
+[ext_resource type="Script" uid="uid://my4f67t58s52" path="res://Scripts/Player/climb_state.gd" id="10_3rn6t"]
+[ext_resource type="Script" uid="uid://dag8bjsbsx6xh" path="res://Scripts/Player/weapons_handler.gd" id="10_sj2ye"]
+[ext_resource type="Script" uid="uid://bbyb7ivjexad6" path="res://Scripts/Player/stunned_state.gd" id="11_pb818"]
+[ext_resource type="Script" uid="uid://c7hb36tg1nxlj" path="res://Scripts/Player/stunned_fall_state.gd" id="12_onsw4"]
+[ext_resource type="Script" uid="uid://bdfid08y6kolq" path="res://Scripts/Gameplay/health.gd" id="12_qhvr2"]
+[ext_resource type="Script" uid="uid://bhic1qxshgdbc" path="res://Scripts/Player/landing_state.gd" id="13_onsw4"]
+[ext_resource type="PackedScene" uid="uid://b5h5r4j6dgrd6" path="res://Scenes/Game/Projectiles/projectile_template.tscn" id="16_onsw4"]
+[ext_resource type="PackedScene" uid="uid://bulvmriync0mi" path="res://Scenes/Game/Components/ladder_detector.tscn" id="17_pb818"]
+[ext_resource type="Script" uid="uid://dac262owrbh6l" path="res://Scripts/Gameplay/ProjectileSystem/projectile_data.gd" id="17_pdxp1"]
+[ext_resource type="Texture2D" uid="uid://c1yk7k2jbrdv1" path="res://Assets/Sprites/Spell/Fireball.png" id="18_2kh0p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qfhb"]
+radius = 12.0
+height = 50.0
+
+[sub_resource type="Resource" id="Resource_pb818"]
+script = ExtResource("17_pdxp1")
+display_name = "Fireball"
+sprite = ExtResource("18_2kh0p")
+scene = ExtResource("16_onsw4")
+metadata/_custom_type_script = "uid://dac262owrbh6l"
+
+[sub_resource type="Animation" id="Animation_rg4bb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j1l28"]
+resource_name = "hurt"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.8332048, 0, 0.11253331, 1), Color(1, 1, 1, 1), Color(0.8332048, 0, 0.11253331, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rn6t"]
+_data = {
+&"RESET": SubResource("Animation_rg4bb"),
+&"hurt": SubResource("Animation_j1l28")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkl2k"]
+size = Vector2(20, 53)
+
+[sub_resource type="Animation" id="Animation_onsw4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 24, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_5fy3h"]
+resource_name = "airdown"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(168, 0, 24, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_h6ddd"]
+resource_name = "airup"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(148, 0, 24, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_84r5c"]
+resource_name = "climb"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(48, 0, 24, 24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2kh0p"]
+resource_name = "shoot"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(120, 0, 24, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_pdxp1"]
+resource_name = "shootcharge"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(72, 0, 24, 24), Rect2(96, 0, 24, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_gpi5b"]
+resource_name = "stunned"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(216, 0, 24, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_3e1wd"]
+resource_name = "stunnedfall"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(192, 0, 24, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_pkl2k"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(24, 0, 24, 24), Rect2(0, 0, 24, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_84r5c"]
+_data = {
+&"RESET": SubResource("Animation_onsw4"),
+&"airdown": SubResource("Animation_5fy3h"),
+&"airup": SubResource("Animation_h6ddd"),
+&"climb": SubResource("Animation_84r5c"),
+&"shoot": SubResource("Animation_2kh0p"),
+&"shootcharge": SubResource("Animation_pdxp1"),
+&"stunned": SubResource("Animation_gpi5b"),
+&"stunnedfall": SubResource("Animation_3e1wd"),
+&"walk": SubResource("Animation_pkl2k")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=621453534]
+collision_layer = 2
+collision_mask = 129
+script = ExtResource("1_lq2ly")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1573954984]
+texture_filter = 1
+position = Vector2(9.536743e-07, 1.0000005)
+scale = Vector2(2, 2)
+texture = ExtResource("2_onsw4")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=256211805]
+shape = SubResource("CapsuleShape2D_3qfhb")
+
+[node name="Statemachine" type="Node" parent="." unique_id=1132695946 node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("3_8jfvq")
+initial_state = NodePath("Idle")
+
+[node name="State" type="Node" parent="Statemachine" unique_id=2038259089]
+script = ExtResource("4_n3abv")
+
+[node name="Idle" type="Node" parent="Statemachine" unique_id=1609134762]
+script = ExtResource("5_vi63e")
+trigger_shooting = true
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Fall" type="Node" parent="Statemachine" unique_id=810262983]
+script = ExtResource("6_ajor6")
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Move" type="Node" parent="Statemachine" unique_id=1754940156]
+script = ExtResource("7_ssbfe")
+trigger_shooting = true
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Jump" type="Node" parent="Statemachine" unique_id=848774983]
+script = ExtResource("8_pet2p")
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Melee" type="Node" parent="Statemachine" unique_id=1766959521]
+script = ExtResource("4_n3abv")
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Shoot" type="Node" parent="Statemachine" unique_id=1992024333]
+script = ExtResource("9_rg4bb")
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Climb" type="Node" parent="Statemachine" unique_id=680813675]
+script = ExtResource("10_3rn6t")
+trigger_falling = false
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Stunned" type="Node" parent="Statemachine" unique_id=1055686030]
+script = ExtResource("11_pb818")
+stun_time = 1.0
+trigger_falling = false
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="StunnedFall" type="Node" parent="Statemachine" unique_id=260025156]
+script = ExtResource("12_onsw4")
+trigger_falling = false
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Landing" type="Node" parent="Statemachine" unique_id=1542167796]
+script = ExtResource("13_onsw4")
+metadata/_custom_type_script = "uid://m46lvwo1w57a"
+
+[node name="Motor" type="Node" parent="." unique_id=484541216]
+unique_name_in_owner = true
+script = ExtResource("5_n3abv")
+AIR_SPEED = 300.0
+KNOCKBACK_POWER = 350.0
+
+[node name="Weapons" type="Node2D" parent="." unique_id=1252103502]
+unique_name_in_owner = true
+script = ExtResource("10_sj2ye")
+starting_projectile = SubResource("Resource_pb818")
+
+[node name="Melee" type="Node2D" parent="Weapons" unique_id=878294827]
+
+[node name="Health" type="Node" parent="." unique_id=1415896160]
+script = ExtResource("12_qhvr2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Health" unique_id=1103370473]
+libraries/ = SubResource("AnimationLibrary_3rn6t")
+
+[node name="LadderDetector" parent="." unique_id=1976779821 instance=ExtResource("17_pb818")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" parent="LadderDetector/ChestHigh" parent_id_path=PackedInt32Array(1976779821, 967052865) index="0" unique_id=520605014]
+position = Vector2(0, 0.49999905)
+shape = SubResource("RectangleShape2D_pkl2k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2065062459]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_84r5c")
+
+[editable path="LadderDetector"]

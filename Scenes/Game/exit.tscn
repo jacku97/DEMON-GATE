@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://difnc000le2c6"]
+
+[ext_resource type="Texture2D" uid="uid://dxs8tna6kxer5" path="res://Assets/TileSets/urizen_onebit_tileset_first_third.png" id="1_8qogy"]
+
+[node name="Exit" type="Node2D" unique_id=165521890]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1660949480]
+texture = ExtResource("1_8qogy")
+region_enabled = true
+region_rect = Rect2(26, 14, 12, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1921866104]
+position = Vector2(12, 0)
+texture = ExtResource("1_8qogy")
+region_enabled = true
+region_rect = Rect2(39.407665, 14, 12, 12)

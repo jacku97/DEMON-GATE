@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bulvmriync0mi"]
+
+[ext_resource type="Script" uid="uid://bxycx1whlg12h" path="res://Scripts/Player/ladder_detector.gd" id="1_crqj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jovs4"]
+size = Vector2(26, 30)
+
+[node name="LadderDetector" type="Node2D" unique_id=1976779821]
+script = ExtResource("1_crqj7")
+
+[node name="ChestHigh" type="Area2D" parent="." unique_id=967052865]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChestHigh" unique_id=520605014]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_jovs4")
+debug_color = Color(0.9838007, 0, 0.354013, 0.41960785)
+
+[connection signal="area_entered" from="ChestHigh" to="." method="_on_chest_high_area_entered"]
+[connection signal="area_exited" from="ChestHigh" to="." method="_on_chest_high_area_exited"]
+[connection signal="body_entered" from="ChestHigh" to="." method="_on_chest_high_body_entered"]
+[connection signal="body_exited" from="ChestHigh" to="." method="_on_chest_high_body_exited"]

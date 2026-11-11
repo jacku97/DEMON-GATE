@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://chlycy5mbeg0u"]
+
+[ext_resource type="Script" uid="uid://dwvfdlnus1dnf" path="res://Scripts/System/main.gd" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://du5n3gwr8ppl4" path="res://Scenes/Game/player.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://bdppnmkwmptm3" path="res://Scenes/Game/Levels/starting_level.tscn" id="3_hptm8"]
+[ext_resource type="FontFile" uid="uid://ddpb3tc0vr1fe" path="res://Assets/Fonts/NotJamBlkltr16.ttf" id="4_344ge"]
+[ext_resource type="Script" uid="uid://dibm7jgkg81i0" path="res://Scripts/UI/top_box_ui.gd" id="4_fdnlq"]
+[ext_resource type="Script" uid="uid://wepxtgs1par5" path="res://Scripts/UI/hearts_container.gd" id="5_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://s3eckoix13fs" path="res://Assets/Sprites/UI/Spellbox.png" id="5_hptm8"]
+[ext_resource type="Texture2D" uid="uid://dalp1lio3lr74" path="res://Assets/Sprites/UI/Heart.png" id="6_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://blxx47sdijnll" path="res://Assets/Sprites/UI/HeartEmpty.png" id="7_d1ilt"]
+[ext_resource type="Script" uid="uid://c3hxy1xkflbum" path="res://Scripts/System/level_master.gd" id="11_d1ilt"]
+[ext_resource type="Script" uid="uid://c06kcib45lviq" path="res://Scripts/UI/game_over_panel.gd" id="13_fdnlq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qfhb"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jovs4"]
+bg_color = Color(0.12846658, 2.293731e-08, 2.1057204e-08, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3oogp"]
+bg_color = Color(0.05197096, 0.051970966, 0.051970914, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3qfhb"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jovs4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hg7lc"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_4714j"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hg7lc"]
+
+[node name="Main" type="Node2D" unique_id=1351460884]
+script = ExtResource("1_bo1nx")
+player_scene = ExtResource("3_8gbba")
+starting_level_scene = ExtResource("3_hptm8")
+
+[node name="Background2" type="PanelContainer" parent="." unique_id=2069703672]
+z_index = -10
+offset_left = -49.0
+offset_top = -26.0
+offset_right = 1173.0
+offset_bottom = 673.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3qfhb")
+metadata/_edit_use_anchors_ = true
+
+[node name="TopBoxUI" type="PanelContainer" parent="." unique_id=157343579]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 1172.0
+offset_bottom = 55.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jovs4")
+script = ExtResource("4_fdnlq")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBoxUI" unique_id=299936853]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="TopBoxUI/MarginContainer" unique_id=1200310904]
+custom_maximum_size = Vector2(1140, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3oogp")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBoxUI/MarginContainer/PanelContainer" unique_id=1902146415]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer" unique_id=1086436748]
+texture_filter = 1
+clip_contents = true
+layout_mode = 2
+
+[node name="WeaponImage" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1723905114]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("5_hptm8")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/WeaponImage" unique_id=1619785476]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Weapon1Image" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/WeaponImage/MarginContainer" unique_id=81715142]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="WeaponImage2" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=728272847]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+texture = ExtResource("5_hptm8")
+expand_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/WeaponImage2" unique_id=1704667744]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.975
+anchor_bottom = 1.0
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Weapon2Image" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/WeaponImage2/MarginContainer2" unique_id=1721410527]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VSeparator2" type="VSeparator" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1786357824]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxLine_3qfhb")
+
+[node name="HeartsContainer" type="HBoxContainer" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1012552754]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("5_d1ilt")
+heart_full = ExtResource("6_ynf5e")
+heart_empty = ExtResource("7_d1ilt")
+
+[node name="Heart1" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/HeartsContainer" unique_id=1267564152]
+layout_mode = 2
+texture = ExtResource("6_ynf5e")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Heart2" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/HeartsContainer" unique_id=1588234265]
+layout_mode = 2
+texture = ExtResource("6_ynf5e")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Heart3" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/HeartsContainer" unique_id=493413801]
+layout_mode = 2
+texture = ExtResource("6_ynf5e")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Heart4" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/HeartsContainer" unique_id=148352771]
+layout_mode = 2
+texture = ExtResource("6_ynf5e")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Heart5" type="TextureRect" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/HeartsContainer" unique_id=80118989]
+layout_mode = 2
+texture = ExtResource("6_ynf5e")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="VSeparator" type="VSeparator" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1713107970]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxLine_jovs4")
+
+[node name="CoinAmount" type="Label" parent="TopBoxUI/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=306706456]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_344ge")
+theme_override_font_sizes/font_size = 36
+text = "000"
+
+[node name="GameOverPanel" type="PanelContainer" parent="." unique_id=1566200368]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 1161.0
+offset_bottom = 677.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hg7lc")
+script = ExtResource("13_fdnlq")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel" unique_id=333710057]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="GameOverPanel/VBoxContainer" unique_id=1640496910]
+layout_mode = 2
+theme_override_constants/separation = 167
+theme_override_styles/separator = SubResource("StyleBoxLine_4714j")
+
+[node name="Label" type="Label" parent="GameOverPanel/VBoxContainer" unique_id=501781374]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_344ge")
+theme_override_font_sizes/font_size = 61
+text = "GAME OVER"
+
+[node name="HSeparator2" type="HSeparator" parent="GameOverPanel/VBoxContainer" unique_id=1144966710]
+layout_mode = 2
+theme_override_constants/separation = 167
+theme_override_styles/separator = SubResource("StyleBoxLine_hg7lc")
+
+[node name="Label2" type="Label" parent="GameOverPanel/VBoxContainer" unique_id=1313915892]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_344ge")
+theme_override_font_sizes/font_size = 40
+text = "Press any key to restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=528583530]
+anchor_mode = 0
+
+[node name="LevelMaster" type="Node2D" parent="." unique_id=868493939]
+unique_name_in_owner = true
+script = ExtResource("11_d1ilt")
