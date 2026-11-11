@@ -53,7 +53,7 @@ func load_level(new_level : PackedScene) -> LevelController:
 	return l
 
 func test():
-	pass
+	print_debug("asd")
 
 
 func on_game_over() -> void:

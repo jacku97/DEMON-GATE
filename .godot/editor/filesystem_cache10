@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1794429951
+::res://::1794430557
 icon.svg::CompressedTexture2D::370948275601677793::1793651329::1793651343::1::::<><><>0<>0<>44853b5724657f31c26dc1d2aa39f94e<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1793908922
 ::res://Assets/Fonts/::1793902064
@@ -16,12 +16,12 @@ Fireball.png::CompressedTexture2D::6647961250759248232::1793998191::1793998197::
 Heart.png::CompressedTexture2D::7182927982696238329::1793995865::1793995866::1::::<><><>0<>0<>14884cdd1c6129d7613bba1c5056f5a0<>res://.godot/imported/Heart.png-f9bbc38428c117b5a1733171680ae999.ctex::
 HeartEmpty.png::CompressedTexture2D::3207428639612752989::1793995865::1793995866::1::::<><><>0<>0<>9d9c9d04e09e601210d0e5de0414cd56<>res://.godot/imported/HeartEmpty.png-ee458df940ec8be1c86b2f8bb69c3fa7.ctex::
 Spellbox.png::CompressedTexture2D::1321448749413169132::1793998393::1793998394::1::::<><><>0<>0<>ae2b0bd4b01432014748fb2ecaa8bbb0<>res://.godot/imported/Spellbox.png-73adbca2bfc40dbdf7297f1646bd9161.ctex::
-::res://Assets/TileSets/::1794429579
-new_tile_set.tres::TileSet::2426245070110359909::1794429579::0::1::::<><><>0<>0<><>::uid://dsc2yijh2kr7t::::res://Scenes/Game/ladder.tscn<>uid://dxs8tna6kxer5::::res://Assets/TileSets/urizen_onebit_tileset_first_third.png<>uid://difnc000le2c6::::res://Scenes/Game/exit.tscn
+::res://Assets/TileSets/::1794430394
+new_tile_set.tres::TileSet::2426245070110359909::1794430394::0::1::::<><><>0<>0<><>::uid://dsc2yijh2kr7t::::res://Scenes/Game/ladder.tscn<>uid://dxs8tna6kxer5::::res://Assets/TileSets/urizen_onebit_tileset_first_third.png<>uid://difnc000le2c6::::res://Scenes/Game/exit.tscn
 urizen_onebit_tileset_first_third.png::CompressedTexture2D::8812802529398932904::1793672383::1793672384::1::::<><><>0<>0<>bd9afd9dd8f8359c1e2971bc35cd8e17<>res://.godot/imported/urizen_onebit_tileset_first_third.png-b1b26e2729c7eca607f9a7b744133438.ctex::
 urizen_onebit_tileset__v2d0.png::CompressedTexture2D::1583006822732852538::1793651898::1793651898::1::::<><><>0<>0<>de0b7b5e45f500a613c99d3a6cae52a8<>res://.godot/imported/urizen_onebit_tileset__v2d0.png-82363bf089eb11ca022b3606207bc79a.ctex::
-::res://Scenes/::1794429726
-main.tscn::PackedScene::5288333515012553646::1794429726::0::1::::<><><>0<>0<><>::uid://dwvfdlnus1dnf::::res://Scripts/System/main.gd<>uid://du5n3gwr8ppl4::::res://Scenes/Game/player.tscn<>uid://bdppnmkwmptm3::::res://Scenes/Game/Levels/starting_level.tscn<>uid://ddpb3tc0vr1fe::::res://Assets/Fonts/NotJamBlkltr16.ttf<>uid://dibm7jgkg81i0::::res://Scripts/UI/top_box_ui.gd<>uid://wepxtgs1par5::::res://Scripts/UI/hearts_container.gd<>uid://s3eckoix13fs::::res://Assets/Sprites/UI/Spellbox.png<>uid://dalp1lio3lr74::::res://Assets/Sprites/UI/Heart.png<>uid://blxx47sdijnll::::res://Assets/Sprites/UI/HeartEmpty.png<>uid://c3hxy1xkflbum::::res://Scripts/System/level_master.gd<>uid://c06kcib45lviq::::res://Scripts/UI/game_over_panel.gd
+::res://Scenes/::1794430394
+main.tscn::PackedScene::5288333515012553646::1794430394::0::1::::<><><>0<>0<><>::uid://dwvfdlnus1dnf::::res://Scripts/System/main.gd<>uid://du5n3gwr8ppl4::::res://Scenes/Game/player.tscn<>uid://bdppnmkwmptm3::::res://Scenes/Game/Levels/starting_level.tscn<>uid://ddpb3tc0vr1fe::::res://Assets/Fonts/NotJamBlkltr16.ttf<>uid://dibm7jgkg81i0::::res://Scripts/UI/top_box_ui.gd<>uid://wepxtgs1par5::::res://Scripts/UI/hearts_container.gd<>uid://s3eckoix13fs::::res://Assets/Sprites/UI/Spellbox.png<>uid://dalp1lio3lr74::::res://Assets/Sprites/UI/Heart.png<>uid://blxx47sdijnll::::res://Assets/Sprites/UI/HeartEmpty.png<>uid://c3hxy1xkflbum::::res://Scripts/System/level_master.gd<>uid://c06kcib45lviq::::res://Scripts/UI/game_over_panel.gd
 ::res://Scenes/Game/::1794428143
 exit.tscn::PackedScene::7731888934302272767::1793673541::0::1::::<><><>0<>0<><>::uid://dxs8tna6kxer5::::res://Assets/TileSets/urizen_onebit_tileset_first_third.png
 killbox.tscn::PackedScene::4189822752616819478::1793816549::0::1::::<><><>0<>0<><>::uid://bu0kht6vh3abp::::res://Scripts/Gameplay/killbox.gd
