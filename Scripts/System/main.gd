@@ -52,8 +52,7 @@ func load_level(new_level : PackedScene) -> LevelController:
 	get_tree().current_scene.add_child(l)
 	return l
 
-func test():
-	print_debug("asd")
+
 
 
 func on_game_over() -> void:
