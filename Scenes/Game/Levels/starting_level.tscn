@@ -23,7 +23,6 @@ tile_map_data = PackedByteArray("AAAQAAQAAgADAAEAAAAPAAQAAwAAAAAAAQA=")
 tile_set = ExtResource("2_tpp78")
 
 [node name="PlayerSpawn" type="Node2D" parent="." unique_id=1238524673]
-unique_name_in_owner = true
 position = Vector2(577, 168)
 
 [node name="Killbox" parent="." unique_id=1077187265 instance=ExtResource("3_iq8ng")]
@@ -31,7 +30,6 @@ position = Vector2(585, 659)
 scale = Vector2(2.1241782, 1)
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=2128914309]
-unique_name_in_owner = true
 position = Vector2(585, 613)
 script = ExtResource("4_nfb7h")
 dont_spawn = true

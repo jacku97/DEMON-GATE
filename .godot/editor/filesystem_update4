@@ -1,3 +1,9 @@
 res://Scenes/main.tscn
 res://Assets/TileSets/new_tile_set.tres
 res://Scripts/System/main.gd
+res://Scripts/System/level_master.gd
+res://Scripts/System/level_controller.gd
+res://Scenes/Game/Levels/starting_level.tscn
+res://Scripts/Gameplay/killbox.gd
+res://Scenes/Game/player.tscn
+res://Scripts/Player/motor.gd

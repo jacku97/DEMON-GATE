@@ -54,6 +54,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TopBoxUI" type="PanelContainer" parent="." unique_id=157343579]
 unique_name_in_owner = true
+z_index = 5
 offset_left = 1.0
 offset_top = -5.0
 offset_right = 1172.0
@@ -234,4 +235,6 @@ anchor_mode = 0
 
 [node name="LevelMaster" type="Node2D" parent="." unique_id=868493939]
 unique_name_in_owner = true
+z_index = -1
 script = ExtResource("11_d1ilt")
+starting_scene = ExtResource("3_hptm8")

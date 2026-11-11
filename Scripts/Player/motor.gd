@@ -69,11 +69,11 @@ func _wrap_around_screen() -> void:
 		screen.position.x - wrap_padding,
 		screen.end.x + wrap_padding
 	)
-	if owner_entity.active == false:
-		owner_entity.global_position.y = wrapf(
-		owner_entity.global_position.y,
-		screen.position.y - wrap_padding,
-		screen.end.y + wrap_padding
+	
+	owner_entity.global_position.y = wrapf(
+	owner_entity.global_position.y,
+	screen.position.y - wrap_padding,
+	screen.end.y + wrap_padding
 	)
 	
 func climb() -> void:
