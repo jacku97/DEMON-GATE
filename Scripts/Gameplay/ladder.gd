@@ -9,5 +9,7 @@ func _ready() -> void:
 	ray_cast_2d.force_raycast_update()
 	await get_tree().physics_frame
 	if ray_cast_2d.is_colliding():
-		ladder_top.queue_free()
-	
+		disable_top()
+
+func disable_top() -> void:
+	ladder_top.queue_free()

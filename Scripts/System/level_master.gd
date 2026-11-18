@@ -6,23 +6,25 @@ extends Node2D
 var current_level : LevelController
 var next_position : Vector2 = Vector2.ZERO
 var SCREEN_HEIGHT : float = 0
+var cam : Camera2D
 
+signal starting_advance
+signal advance_finished
 
 func setup() -> void:
 	var screen :  Rect2 = get_viewport().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect()
 	SCREEN_HEIGHT = screen.end.y
+	cam = get_viewport().get_camera_2d()
 
 func restart_game() -> void:
 	if get_child_count() > 0:
 		for child in get_children():
 			child.queue_free()
-	get_viewport().get_camera_2d().global_position = Vector2.ZERO
+	cam.global_position = Vector2.ZERO
 	next_position = Vector2.ZERO
 	var first_level := load_level(starting_scene)
 	current_level = first_level
 	add_level(first_level)
-	add_level(load_level(starting_scene))
-	add_level(load_level(starting_scene))
 	add_level(load_level(starting_scene))
 
 func build_world() -> void:
@@ -48,15 +50,19 @@ func add_level(level : LevelController) -> void:
 	level.setup()
 	level.global_position = next_position
 	next_position.y += SCREEN_HEIGHT
+	level.advancer_crossed.connect(advance_level)
 
 func advance_level():
-	#Tween the camera
-	#Delete previous level
-	#Signal that the level is ready
-	pass
+	var p := cam.global_position
+	p.y += SCREEN_HEIGHT
+	tween_camera(p)
+	starting_advance.emit()
 
-func tween_camera() -> void:
-	pass
+func tween_camera(pos : Vector2) -> void:
+	var tween = create_tween()
+	tween.tween_property(cam, "global_position", pos, 1)
+	await tween.finished
+	advance_finished.emit()
 
 func on_game_over() -> void:
 	current_level.on_game_over()

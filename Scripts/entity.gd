@@ -11,14 +11,14 @@ var facing_direction : float = 1
 @export var manual_setup : bool = false
 
 var active : bool = true
-
-
+var wrappable : bool = true
 signal dead
 
 
 
 func setup() -> void:
 	active = false
+	wrappable = true
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(8, true)
 	facing_direction = -1
@@ -40,6 +40,16 @@ func _process(delta: float) -> void:
 		sprite_2d.flip_h = true
 	elif dir > 0:
 		sprite_2d.flip_h = false
+
+func on_level_complete() -> void:
+	wrappable = false
+
+func on_level_start() -> void:
+	wrappable = true
+
+func _physics_process(delta: float) -> void:
+	if !active:
+		print_debug("not active")
 
 func on_health_depleted() -> void:
 	set_collision_mask_value(1, false)

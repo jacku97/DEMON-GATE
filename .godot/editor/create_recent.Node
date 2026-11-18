@@ -1,3 +1,5 @@
+CollisionShape2D
+Area2D
 Node2D
 Camera2D
 HSeparator
@@ -10,5 +12,3 @@ Sprite2D
 OnHitBehaviour
 AnimationPlayer
 ShapeCast2D
-CollisionShape2D
-Area2D

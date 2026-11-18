@@ -43,6 +43,9 @@ func start_game() -> void:
 		game_over_panel.accept.disconnect(start_game)
 	game_reset.emit()
 	game_over_panel.hide()
+	
+	level_master.starting_advance.connect(on_level_advance)
+	level_master.advance_finished.connect(on_advance_finished)
 	level_master.start_level()
 
 
@@ -57,6 +60,15 @@ func on_game_over() -> void:
 	game_over.emit()
 	level_master.on_game_over()
 	
+
+func on_level_advance() -> void:
+	print_debug("Main level advance")
+	player.active = false
+	player.wrappable = false
+
+func on_advance_finished() -> void:
+	player.active = true
+	player.wrappable = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

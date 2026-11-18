@@ -22,12 +22,8 @@ func setup() -> void:
 func _physics_process(delta: float) -> void:
 	#direction = 0
 	owner_entity.move_and_slide()
-	if owner_entity.active == false:
-		print_debug("Before: " + str(owner_entity.global_position.y) + " " + str(owner_entity.active))
 	_wrap_around_screen()
-	if owner_entity.active == false:
-		print_debug("After " + str(owner_entity.global_position.y) + " " + str(owner_entity.active))
-	
+
 
 func hard_set_direction(dir : float) -> void:
 	direction = dir
@@ -63,6 +59,7 @@ func move() -> void:
 		owner_entity.velocity.x = move_toward(owner_entity.velocity.x, 0, move_speed)
 
 func _wrap_around_screen() -> void:
+
 	var screen :  Rect2 = get_viewport().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect()
 	owner_entity.global_position.x = wrapf(
 		owner_entity.global_position.x,
@@ -70,6 +67,7 @@ func _wrap_around_screen() -> void:
 		screen.end.x + wrap_padding
 	)
 	
+	if owner_entity.wrappable == false : return
 	owner_entity.global_position.y = wrapf(
 	owner_entity.global_position.y,
 	screen.position.y - wrap_padding,
